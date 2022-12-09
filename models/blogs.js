@@ -1,3 +1,4 @@
+import { query } from "express";
 import { pool } from "../db/index.js";
 
 // GET ALL BLOG PREVIEWS
@@ -24,7 +25,8 @@ export async function getBlogById(id) {
 
 // CREATE NEW BLOG
 export async function createBlog({ title, author, body }) {
-	const result = await query(
+	const result = await query
+	(
 		`INSERT INTO teams(title, author, body) 
     VALUES($1, $2, $3)
     RETURNING *`,

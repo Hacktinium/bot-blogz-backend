@@ -1,3 +1,5 @@
+import { query } from "express";
+
 // GET COMMENTS BY BLOG
 export async function getCommentsByBlog(id) {
 	const result = await query(
