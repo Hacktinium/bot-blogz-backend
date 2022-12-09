@@ -1,9 +1,9 @@
 import express from "express";
-import { getBlogs, getBlogById, createBlog } from "../models/blogs.js";
+import { getBlogs, getBlogById, createBlog, deleteBlogById } from "../models/blogs.js";
 
 const router = express.Router();
 
-router.get("/", async function (res) {
+router.get("/", async function (req, res) {
 	const blogs = await getBlogs();
 	res.json({ success: true, payload: blogs });
 });
@@ -17,6 +17,11 @@ router.post("/", async function (req, res) {
 	const data = req.body;
 	const newBlog = await createBlog(data);
 	res.json({ success: true, payload: newBlog });
+});
+
+router.delete("/:id", async function (req, res) {
+	const result = await deleteBlogById(req.params.id);
+	res.json({ success: true, payload: result });
 });
 
 export default router;
