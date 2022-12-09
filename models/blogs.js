@@ -19,7 +19,7 @@ export async function getBlogById(id) {
     WHERE id = $1`,
 		[id]
 	);
-	const blog = result.rows;
+	const blog = result.rows[0];
 	return blog;
 }
 
